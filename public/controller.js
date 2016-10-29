@@ -1,23 +1,43 @@
 var app = angular.module("myApp",[]);
 app.controller("myController",["$scope","$http",function($scope,$http){
-var person1 ={
-	name: "scott",
-	email:"scott@gmail.com",
-	mobile:"(989) 1111-1111"
+
+var refresh =function(){
+$http.get("/contactList").success(function(response){
+$scope.contactList= response;
+$scope.contact = "";
+});
 }
-var person2 ={
-	name: "tharun",
-	email:"tharun@gmail.com",
-	mobile:"(989) 22222-1111"
+refresh();
+$scope.addContact  = function(){
+	$http.post("/contactList",$scope.contact).success(function(response){
+refresh();
+})
 }
 
-var person3 ={
-	name: "arun",
-	email:"arun@gmail.com",
-	mobile:"(989) 3333-1111"
+$scope.editContact =function(id){
+$http.get("/contactList/"+id).success(function(response){
+	$scope.contact=response;
+
+})
+}
+$scope.updateContact =function(){
+$http.put("/contactList/"+$scope.contact._id,$scope.contact).success(function(response){
+	//$scope.contact=response;
+refresh();
+})
 }
 
-var contactList = [person1,person2,person3];
-$scope.contactList = contactList;
+
+
+
+$scope.deleteContact =function(id){
+$http.delete("/contactList/"+id).success(function(response){
+refresh();
+})
+}
+
+
+
+
 
 }]);

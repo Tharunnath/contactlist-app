@@ -21,15 +21,28 @@
 		<th>Name</th>
 		<th>Email</th>
 		<th>Mobile</th>
+		<th>Action</th>
 	</tr>
 </thead>
 	<tbody>
+	<tr>
+		<td><input type="text" class="form-control" ng-model="contact.name"></td>
+		<td><input type="text" class="form-control" ng-model="contact.email"></td>
+		<td><input type="text" class="form-control" ng-model="contact.mobile"></td>
+		<td><button class="btn-primary" ng-click="addContact()">Add Contact </button></td>
+		<td><button class="btn-info" ng-click="updateContact()">Update Contact </button></td>
+
+
+	</tr>
 		<tr ng-repeat="contact in contactList">
 		<td>{{contact.name}}</td>
 <td>{{contact.email}}
 </td>
 <td>{{contact.mobile}}
 </td>
+<td>
+<button class="btn-danger" ng-click="deleteContact(contact._id)">Delete  </button>
+<button class="btn-warning" ng-click="editContact(contact._id)">Edit  </button></td> 
 		</tr>
 
 	</tbody>
