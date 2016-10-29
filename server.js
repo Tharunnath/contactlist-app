@@ -50,9 +50,10 @@ app.get("/contactList/:id",function(req,res){
 	})
 })
 
-app.put("/contactList/:id",function(req,res){
+/*app.put("/contactList/:id",function(req,res){
 	var id= req.params.id;
 	var body = req.body;
+	console.log(body.name);
 	Contact.updateContact(id,body,function(err,data){
 	if(err){
 			throw err;
@@ -61,7 +62,21 @@ app.put("/contactList/:id",function(req,res){
 	
 	})
 })
+*/
 
+
+app.put("/contactList",function(req,res){
+	var id= req.body._id;
+	var body = req.body;
+	console.log(id);
+	Contact.updateContact(id,body,function(err,data){
+	if(err){
+			throw err;
+		}
+		res.json(data);
+	
+	})
+})
 
 
 

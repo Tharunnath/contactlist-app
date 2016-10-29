@@ -20,8 +20,15 @@ $http.get("/contactList/"+id).success(function(response){
 
 })
 }
-$scope.updateContact =function(){
+/*$scope.updateContact =function(){
 $http.put("/contactList/"+$scope.contact._id,$scope.contact).success(function(response){
+	//$scope.contact=response;
+refresh();
+})
+}*/
+
+$scope.updateContact =function(){
+	$http.put("/contactList",$scope.contact).success(function(response){
 	//$scope.contact=response;
 refresh();
 })
